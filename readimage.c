@@ -28,5 +28,15 @@ int main(int argc, char **argv) {
     printf("Inodes: %d\n", sb->s_inodes_count);
     printf("Blocks: %d\n", sb->s_blocks_count);
     
+    struct ext2_group_desc* gd = (struct ext2_group_desc*)
+    (disk + 1024 + EXT2_BLOCK_SIZE);
+
+    printf("Block group:\n");
+  printf("    block bitmap: %d\n", gd->bg_block_bitmap);
+  printf("    inode bitmap: %d\n", gd->bg_inode_bitmap);
+  printf("    inode table: %d\n", gd->bg_inode_table);
+  printf("    free blocks: %d\n", gd->bg_free_blocks_count);
+  printf("    free inodes: %d\n", gd->bg_free_inodes_count);
+  printf("    used_dirs: %d\n", gd->bg_used_dirs_count);
     return 0;
 }
